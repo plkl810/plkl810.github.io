@@ -57,6 +57,11 @@
         .btn-resume { background: #00c853; color: #fff; margin-top: 12px; }
         .btn-secondary { background: #444; color: #fff; margin-top: 12px; }
         .btn-ghost { background: transparent; color: #777; font-size: 0.75rem; font-weight: normal; padding: 10px 0 0; }
+        .confirm-bar { background: #2a2a2a; border: 1px solid #ffd700; border-radius: 14px; padding: 16px; margin-top: 14px; }
+        .confirm-bar p { margin: 0 0 12px; font-size: 0.9rem; line-height: 1.6; }
+        .confirm-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .btn-confirm-yes { background: linear-gradient(45deg, #ffd700, #ff8c00); color: #000; }
+        .btn-confirm-no { background: #444; color: #fff; }
         .ranking { margin-top: 28px; text-align: left; background: #252525; padding: 20px; border-radius: 16px; border: 1px solid #333; }
         .ranking h3 { font-size: 0.9rem; color: #888; margin: 0 0 6px; }
         .ranking-note { font-size: 0.7rem; color: #666; margin: 0 0 8px; }
@@ -105,6 +110,14 @@
         <button type="button" class="btn-resume" id="resume-btn" style="display:none;">再開する</button>
         <p id="restarts-note" style="display:none; color:#888; font-size:0.85rem; margin-top:12px;">本日の再開回数（5回）を使い切りました。再開回数は明日リセットされます。</p>
         <button type="button" class="btn-secondary" id="save-btn" style="display:none;">ランキングに保存して終了</button>
+    </div>
+
+    <div class="confirm-bar" id="confirm-bar" style="display:none;">
+        <p id="confirm-msg"></p>
+        <div class="confirm-btns">
+            <button type="button" class="btn-confirm-yes" id="confirm-yes">挑戦する</button>
+            <button type="button" class="btn-confirm-no" id="confirm-no">キャンセル</button>
+        </div>
     </div>
 
     <div class="ranking">

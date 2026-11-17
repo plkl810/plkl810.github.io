@@ -142,9 +142,43 @@ function setStatus(text, color, miracle) {
   el.style.color = color || '#888';
 }
 
+var pendingConfirm = null;
+
+function showConfirm(message, yesLabel, onYes) {
+  pendingConfirm = onYes;
+  document.getElementById('confirm-msg').textContent = message;
+  document.getElementById('confirm-yes').textContent = yesLabel;
+  document.getElementById('confirm-bar').style.display = 'block';
+}
+
+function hideConfirm() {
+  pendingConfirm = null;
+  document.getElementById('confirm-bar').style.display = 'none';
+}
+
+document.getElementById('confirm-yes').addEventListener('click', function () {
+  var fn = pendingConfirm;
+  hideConfirm();
+  if (fn) fn();
+});
+
+document.getElementById('confirm-no').addEventListener('click', function () {
+  hideConfirm();
+});
+
 function challenge(prob, gain) {
   if (isGameOver) return;
-  if (prob === 0.01 && !window.confirm('1%の奇跡に挑戦しますか？失敗するとスコアは0になります。')) return;
+  if (prob === 0.01) {
+    showConfirm('1%の奇跡に挑戦しますか？成功すればスコア2倍、失敗するとスコアは0になります。', '挑戦する', function () {
+      doChallenge(0.01, 'double');
+    });
+    return;
+  }
+  doChallenge(prob, gain);
+}
+
+function doChallenge(prob, gain) {
+  if (isGameOver) return;
 
   if (Math.random() < prob) {
     streak += 1;
@@ -190,24 +224,26 @@ document.getElementById('resume-btn').addEventListener('click', function () {
 
 document.getElementById('save-btn').addEventListener('click', function () {
   if (isGameOver || score <= 0) return;
-  if (!window.confirm('ランキングに保存して、この回を終了しますか？')) return;
-  addRankingEntry(getDisplayName(), score);
-  if (score > best) { best = score; saveBest(); }
-  score = 0;
-  streak = 0;
-  isGameOver = true;
-  setStatus('ランキングに保存しました', '#00ff88', false);
-  updateUI();
+  showConfirm('ランキングに保存して、この回を終了しますか？', '保存して終了', function () {
+    addRankingEntry(getDisplayName(), score);
+    if (score > best) { best = score; saveBest(); }
+    score = 0;
+    streak = 0;
+    isGameOver = true;
+    setStatus('ランキングに保存しました', '#00ff88', false);
+    updateUI();
+  });
 });
 
 document.getElementById('clear-ranking-btn').addEventListener('click', function () {
-  if (!window.confirm('この端末のランキングと自己ベストを消去しますか？')) return;
-  try {
-    localStorage.removeItem(LS_RANKING);
-    localStorage.removeItem(LS_BEST);
-  } catch (e) { /* ignore */ }
-  best = 0;
-  updateUI();
+  showConfirm('この端末のランキングと自己ベストを消去しますか？', '消去する', function () {
+    try {
+      localStorage.removeItem(LS_RANKING);
+      localStorage.removeItem(LS_BEST);
+    } catch (e) { /* ignore */ }
+    best = 0;
+    updateUI();
+  });
 });
 
 (function init() {

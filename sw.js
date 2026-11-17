@@ -1,4 +1,4 @@
-const CACHE_NAME = 'luck50-rebuilt-v2';
+const CACHE_NAME = 'luck50-rebuilt-v3';
 const ASSETS = [
   './',
   'index.html',
