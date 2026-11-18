@@ -1,1 +1,36 @@
-{"background_color":"#121212","description":"究極の運試しゲーム。1%の奇跡を掴め。","display":"standalone","icons":[{"purpose":"any","sizes":"192x192","src":"icon-192.png","type":"image/png"},{"purpose":"any","sizes":"512x512","src":"icon-512.png","type":"image/png"},{"purpose":"any","sizes":"any","src":"icon.svg","type":"image/svg+xml"}],"name":"LUCK 50","scope":"./","short_name":"LUCK 50","start_url":"index.html","theme_color":"#ff0055"}
+{
+  "background_color": "#121212",
+  "description": "究極の運試しゲーム。1%の奇跡を掴め。",
+  "display": "standalone",
+  "icons": [
+    {
+      "purpose": "any",
+      "sizes": "192x192",
+      "src": "icon-192.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "icon-512.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
+      "sizes": "any",
+      "src": "icon.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "icon-maskable-512.png",
+      "type": "image/png"
+    }
+  ],
+  "name": "LUCK 50",
+  "scope": "/",
+  "short_name": "LUCK 50",
+  "start_url": "/",
+  "theme_color": "#ff0055"
+}

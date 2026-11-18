@@ -1,4 +1,4 @@
-const CACHE_NAME = 'luck50-rebuilt-v3';
+const CACHE_NAME = 'luck50-rebuilt-v4';
 const ASSETS = [
   './',
   'index.html',
@@ -7,7 +7,8 @@ const ASSETS = [
   'manifest.json',
   'icon.svg',
   'icon-192.png',
-  'icon-512.png'
+  'icon-512.png',
+  'icon-maskable-512.png'
 ];
 
 self.addEventListener('install', (event) => {
